@@ -1,0 +1,84 @@
+MySQL Shell 8.0.38
+
+Copyright (c) 2016, 2024, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 20
+Server version: 8.0.39 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| employees          |
+| empresa            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| tbd_e1             |
+| tbd_e2             |
+| world_x            |
++--------------------+
+10 rows in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  SQL > use empresa;
+Default schema set to `empresa`.
+Fetching global names, object names from `empresa` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  empresa  SQL > show tables;
++-------------------+
+| Tables_in_empresa |
++-------------------+
+| countries         |
+| departments       |
+| employees         |
+| job_history       |
+| jobs              |
+| locations         |
+| prueba            |
+| regions           |
++-------------------+
+8 rows in set (0.0016 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT COUNT(*) FROM countries;
++----------+
+| COUNT(*) |
++----------+
+|       27 |
++----------+
+1 row in set (0.0033 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT regresa_valor();
++-----------------+
+| regresa_valor() |
++-----------------+
+|               1 |
++-----------------+
+1 row in set (0.0077 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > SELECT mostrar_mensaje("HOLA MUNDO");
++-------------------------------+
+| mostrar_mensaje("HOLA MUNDO") |
++-------------------------------+
+| TU MENSAJE: HOLA MUNDO        |
++-------------------------------+
+1 row in set (0.0043 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > select sumar_numeros(1, 10);
++----------------------+
+| sumar_numeros(1, 10) |
++----------------------+
+|                   11 |
++----------------------+
+1 row in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > select sumar_numeros(1, 10);
++----------------------+
+| sumar_numeros(1, 10) |
++----------------------+
+|                   11 |
++----------------------+
+1 row in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL >

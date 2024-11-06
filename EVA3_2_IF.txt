@@ -1,0 +1,189 @@
+MySQL Shell 8.0.38
+
+Copyright (c) 2016, 2024, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 21
+Server version: 8.0.39 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > create database tbd_e3;
+Query OK, 1 row affected (0.0193 sec)
+ MySQL  localhost:3306 ssl  SQL > use tbs_e3;
+MySQL Error 1049: Unknown database 'tbs_e3'
+ MySQL  localhost:3306 ssl  SQL > use tbd_e3;
+Default schema set to `tbd_e3`.
+Fetching global names, object names from `tbd_e3` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select comparar_numeros(8,10);
++------------------------+
+| comparar_numeros(8,10) |
++------------------------+
+| MENOR                  |
++------------------------+
+1 row in set (0.0061 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select comparar_numeros(8,8);
++-----------------------+
+| comparar_numeros(8,8) |
++-----------------------+
+| IGUAL                 |
++-----------------------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select comparar_numeros(10,8);
++------------------------+
+| comparar_numeros(10,8) |
++------------------------+
+| MAYOR                  |
++------------------------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select comparar_numeros(10,10);
++-------------------------+
+| comparar_numeros(10,10) |
++-------------------------+
+| IGUAL                   |
++-------------------------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select MOD (5,3);
++-----------+
+| MOD (5,3) |
++-----------+
+|         2 |
++-----------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select es_par(2);
++-----------+
+| es_par(2) |
++-----------+
+| ES PAR    |
++-----------+
+1 row in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select es_par(30);
++------------+
+| es_par(30) |
++------------+
+| ES PAR     |
++------------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select es_par(15);
++------------+
+| es_par(15) |
++------------+
+| ES IMPAR   |
++------------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select es_par(150);
++-------------+
+| es_par(150) |
++-------------+
+| ES PAR      |
++-------------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > SELECT dia_semana(7);
++---------------+
+| dia_semana(7) |
++---------------+
+| NO VALIDO     |
++---------------+
+1 row in set (0.0040 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > SELECT dia_semana(7);
++---------------+
+| dia_semana(7) |
++---------------+
+| Sabado        |
++---------------+
+1 row in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > SELECT conversion_temp(1,15);
++-----------------------+
+| conversion_temp(1,15) |
++-----------------------+
+|                   288 |
++-----------------------+
+1 row in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

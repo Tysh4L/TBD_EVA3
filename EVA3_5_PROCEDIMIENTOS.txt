@@ -1,0 +1,159 @@
+MySQL Shell 8.0.38
+
+Copyright (c) 2016, 2024, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 11
+Server version: 8.0.39 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > use empresa;
+Default schema set to `empresa`.
+Fetching global names, object names from `empresa` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  empresa  SQL > select contar_empleados();
++--------------------+
+| contar_empleados() |
++--------------------+
+|                107 |
++--------------------+
+1 row in set (0.0211 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > desc countries;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| COUNTRY_ID   | varchar(2)    | NO   | PRI | NULL    |       |
+| COUNTRY_NAME | varchar(40)   | YES  |     | NULL    |       |
+| REGION_ID    | decimal(10,0) | YES  | MUL | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+3 rows in set (0.0045 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > show create tables countries;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tables countries' at line 1
+ MySQL  localhost:3306 ssl  empresa  SQL > show create table countries;
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table
+
+                                                       |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| countries | CREATE TABLE `countries` (
+  `COUNTRY_ID` varchar(2) NOT NULL,
+  `COUNTRY_NAME` varchar(40) DEFAULT NULL,
+  `REGION_ID` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`COUNTRY_ID`),
+  KEY `COUNTR_REG_FK` (`REGION_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0016 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > select distinct(region_id) from countries;
++-----------+
+| region_id |
++-----------+
+|      NULL |
+|         1 |
+|         2 |
+|         3 |
+|         4 |
++-----------+
+5 rows in set (0.0319 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > select agregar_pais("XX", "SIN PAIS");
++--------------------------------+
+| agregar_pais("XX", "SIN PAIS") |
++--------------------------------+
+|                              1 |
++--------------------------------+
+1 row in set (0.0151 sec)
+
+Query OK, 0 rows affected (0.0128 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > select * from employees limit 10;
++-------------+------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL    | PHONE_NUMBER | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+|         100 | Steven     | King      | SKING    | 515.123.4567 | 1987-06-17 | AD_PRES    | 24000.00 |           0.00 |          0 |            90 |
+|         101 | Neena      | Kochhar   | NKOCHHAR | 515.123.4568 | 1987-06-18 | AD_VP      | 17000.00 |           0.00 |        100 |            90 |
+|         102 | Lex        | De Haan   | LDEHAAN  | 515.123.4569 | 1987-06-19 | AD_VP      | 17000.00 |           0.00 |        100 |            90 |
+|         103 | Alexander  | Hunold    | AHUNOLD  | 590.423.4567 | 1987-06-20 | IT_PROG    |  9000.00 |           0.00 |        102 |            60 |
+|         104 | Bruce      | Ernst     | BERNST   | 590.423.4568 | 1987-06-21 | IT_PROG    |  6000.00 |           0.00 |        103 |            60 |
+|         105 | David      | Austin    | DAUSTIN  | 590.423.4569 | 1987-06-22 | IT_PROG    |  4800.00 |           0.00 |        103 |            60 |
+|         106 | Valli      | Pataballa | VPATABAL | 590.423.4560 | 1987-06-23 | IT_PROG    |  4800.00 |           0.00 |        103 |            60 |
+|         107 | Diana      | Lorentz   | DLORENTZ | 590.423.5567 | 1987-06-24 | IT_PROG    |  4200.00 |           0.00 |        103 |            60 |
+|         108 | Nancy      | Greenberg | NGREENBE | 515.124.4569 | 1987-06-25 | FI_MGR     | 12000.00 |           0.00 |        101 |           100 |
+|         109 | Daniel     | Faviet    | DFAVIET  | 515.124.4169 | 1987-06-26 | FI_ACCOUNT |  9000.00 |           0.00 |        108 |           100 |
++-------------+------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+10 rows in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL >
+                                           call consultar_empleados(100);
++-------------+------------+-----------+-------+--------------+------------+---------+----------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL | PHONE_NUMBER | HIRE_DATE  | JOB_ID  | SALARY   | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-----------+-------+--------------+------------+---------+----------+----------------+------------+---------------+
+|         100 | Steven     | King      | SKING | 515.123.4567 | 1987-06-17 | AD_PRES | 24000.00 |           0.00 |          0 |            90 |
++-------------+------------+-----------+-------+--------------+------------+---------+----------+----------------+------------+---------------+
+1 row in set (0.0009 sec)
+
+ MySQL  localhost:3306 ssl  empresa  SQL > call agreagr_pais("VG", "MISSHIM");
+ERROR: 1305 (42000): PROCEDURE empresa.agreagr_pais does not exist
+ MySQL  localhost:3306 ssl  empresa  SQL > call agregar_pais("VG", "MISSHIM");
+ERROR: 1062 (23000): Duplicate entry 'VG' for key 'countries.PRIMARY'
+ MySQL  localhost:3306 ssl  empresa  SQL > call agregar_pais("VV", "MISSHIM");
+Query OK, 1 row affected (0.0132 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL > select * from countries
+                                        -> where country_id = 'VV';
++------------+--------------+-----------+
+| COUNTRY_ID | COUNTRY_NAME | REGION_ID |
++------------+--------------+-----------+
+| VV         | MISSHIM      |         1 |
++------------+--------------+-----------+
+1 row in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  empresa  SQL >
+
+ MySQL  localhost:3306 ssl  empresa  SQL > USE TBD_E3;
+Default schema set to `TBD_E3`.
+Fetching global names, object names from `tbd_e3` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > show tables;
++------------------+
+| Tables_in_tbd_e3 |
++------------------+
+| bitacora         |
+| personas         |
+| productos        |
+| prueba           |
+| pruebas          |
++------------------+
+5 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select ultimo_id();
++-------------+
+| ultimo_id() |
++-------------+
+|          10 |
++-------------+
+1 row in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select * from productos;
++----+----------+
+| id | nombre   |
++----+----------+
+|  1 | PAPAS    |
+|  2 | REFRESCO |
+| 10 | papas    |
+| 10 | papas    |
+| 10 | papas    |
++----+----------+
+5 rows in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > call insertar_producto('Jumpsuit');
+Query OK, 1 row affected (0.0097 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL > select * from productos;
++----+----------+
+| id | nombre   |
++----+----------+
+|  1 | PAPAS    |
+|  2 | REFRESCO |
+| 10 | papas    |
+| 10 | papas    |
+| 10 | papas    |
+| 11 | Jumpsuit |
++----+----------+
+6 rows in set (0.0007 sec)
+ MySQL  localhost:3306 ssl  tbd_e3  SQL >
